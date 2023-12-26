@@ -1,0 +1,65 @@
+﻿
+
+
+
+resolve: wene a connection test failes we still try to compare a diff report
+
+connection string
+
+
+
+resolve:
+When execption occures it is loged at the origin method and then thrown and logged at the outer calling method, how can I log the execption only one time
+
+Error	3	Argument 6: cannot convert from 'System.Collections.Generic.List<SQLSchemaCompare.TablesToExtractData>' to 'System.Collections.Generic.IEnumerable<System.Tuple<string,string>>'	D:\GoogleDrive\Team\C#\SQLSchemaCompare\Program.cs	362	117	SQLSchemaCompare
+
+
+add:
+
+input validation: verify the action input before the switch case
+The options Extract and UseExistingSourceFile cannot be defined together
+
+ADD TO the body of the SCRIPT FILE: SOURCE SERVER , DATABASE, RATGT SERVER, TIME
+
+
+
+test:
+multithreading
+
+
+
+"C:\Program Files (x86)\Microsoft SQL Server\110\DAC\bin\SqlPackage.exe" /Action:Publish,	/SourceFile:"C:\SchemaCompare\dev5-bdb01\ACMLogDB_Archive\ACMLogDB_Archive_20141214152321.dacpac" /OutputPath:C:\SchemaCompare\DEV4-BDBN02\YANIV\deprep.xml /TargetServerName:DEV4-BDBN02 /TargetDatabaseName:YANIV
+
+
+
+
+<!--<sourceServer>
+    <server>
+      <ServerSettings>
+        <SQLServer>YETROGI-LT</SQLServer>
+        <AuthenticationMode>true</AuthenticationMode>
+        <SQLUser>sa</SQLUser>
+        <SQLPassword></SQLPassword>
+        <Databases>YANIV</Databases>
+        <IsMultiThreading>0</IsMultiThreading>
+        <ConsoleForeGroundColour>Cyan</ConsoleForeGroundColour>
+      </ServerSettings>
+      <UseExistingSourceFile>3213213</UseExistingSourceFile>
+    </server>
+  </sourceServer>
+  
+  <targetServers>
+    <server>
+      <ServerSettings>
+        <SQLServer>YETROGI-LT</SQLServer>
+        <AuthenticationMode>true</AuthenticationMode>
+        <SQLUser>sa</SQLUser>
+        <SQLPassword></SQLPassword>
+        <Databases>YANIV</Databases>
+        <IsMultiThreading>0</IsMultiThreading>
+        <ConsoleForeGroundColour>Cyan</ConsoleForeGroundColour>
+      </ServerSettings>
+      <property1>3213213</property1>
+    </server>
+    
+  </targetServers>-->

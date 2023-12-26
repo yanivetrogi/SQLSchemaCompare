@@ -1,0 +1,107 @@
+﻿
+<-- 
+Generate the cs from xsd using xsd.exe:
+xsd /c deploy-report.xsd /n:MyNamespace
+-->
+
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://schemas.microsoft.com/sqlserver/dac/DeployReport/2012/02"
+    elementFormDefault="qualified"
+    xmlns="http://schemas.microsoft.com/sqlserver/dac/DeployReport/2012/02"
+    xmlns:t="http://schemas.microsoft.com/sqlserver/dac/DeployReport/2012/02"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:annotation>
+        <xs:documentation>
+            The following schema for Microsoft SQL Server describes the parts of a dacpac deploy report in XML format.
+            Microsoft does not make any representation or warranty regarding the schema or any product or item
+            developed based on the schema. The schema is provided to you on an AS IS basis. Microsoft disclaims all express,
+            implied and statutory warranties, including but not limited to the implied warranties of merchantability, fitness
+            for a particular purpose, and freedom from infringement. Without limiting the generality of the foregoing, Microsoft
+            does not make any warranty of any kind that any item developed based on the schema, or any portion of the schema,
+            will not infringe any copyright, patent, trade secret, or other intellectual property right of any person or entity
+            in any country. It is your responsibility to seek licenses for such intellectual property rights where appropriate.
+            MICROSOFT SHALL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING OUT OF OR IN CONNECTION WITH THE USE OF THE SCHEMA,
+            INCLUDING WITHOUT LIMITATION, ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL (INCLUDING ANY LOST PROFITS), PUNITIVE
+            OR SPECIAL DAMAGES, WHETHER OR NOT MICROSOFT HAS BEEN ADVISED OF SUCH DAMAGES. (c) 2012 Microsoft Corporation. All
+            rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+    
+    <xs:element name="DeploymentReport">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Errors" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Error" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Warnings" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Warning" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Alerts" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Alert" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Issue" type="IssueType" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="Name" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Operations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Operation" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Item" minOccurs="0" maxOccurs="unbounded" type="ItemType">
+                                            <xs:keyref name="ItemToAlertKeyRef" refer="AlertKey">
+                                                <xs:selector xpath="t:Issue"/>
+                                                <xs:field xpath="@Id"/>
+                                            </xs:keyref>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="Name" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:key name="AlertKey">
+            <xs:selector xpath="t:Alerts/t:Alert/t:Issue"/>
+            <xs:field xpath="@Id"/>
+        </xs:key>
+    </xs:element>
+
+    <xs:complexType name="ItemType">
+        <xs:sequence>
+            <xs:element name="Issue" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="Id" type="xs:int" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Value" type="xs:string" use="required"/>
+        <xs:attribute name="Type" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="IssueType">
+        <xs:attribute name="Value" type="xs:string" use="required"/>
+        <xs:attribute name="Id" type="xs:int" use="required"/>
+    </xs:complexType>
+    
+</xs:schema>

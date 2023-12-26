@@ -1,0 +1,8 @@
+
+
+"C:\Program Files (x86)\Microsoft SQL Server\110\DAC\bin\SqlPackage.exe" /Action:Publish,	/SourceFile:"C:\SchemaCompare\dev5-bdb01\ACMLogDB_Archive\ACMLogDB_Archive_20141214152321.dacpac" /OutputPath:C:\SchemaCompare\DEV4-BDBN02\YANIV\deprep.xml /TargetServerName:DEV4-BDBN02 /TargetDatabaseName:YANIV
+
+
+
+Publish
+"C:\Program Files (x86)\Microsoft SQL Server\110\DAC\bin\SqlPackage.exe" /Action:Publish /SourceFile:"C:\SchemaCompare\dev5-bdb01\ACMLogDB_Archive\ACMLogDB_Archive_20141214152321.dacpac" /TargetServerName:DEV4-BDBN02 /TargetDatabaseName:YANIV
