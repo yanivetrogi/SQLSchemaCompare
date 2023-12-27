@@ -19,6 +19,7 @@ using System.Xml.Serialization;
 using Microsoft.SqlServer.Dac;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Dac.Model;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 
@@ -330,7 +331,7 @@ namespace SQLSchemaCompare
             }
             catch (Exception e) { WriteToLog(target_server_padded, target_database, "Error", e); }
         }
-
+// aaa
         private static DacDeployOptions GetDeployOptions()
         {
             try
@@ -345,18 +346,29 @@ namespace SQLSchemaCompare
                 deploy_options.VerifyDeployment = DeployOptions.VerifyDeployment;
                 deploy_options.IncludeTransactionalScripts = DeployOptions.IncludeTransactionalScripts;
                 deploy_options.IgnoreNotForReplication = DeployOptions.IgnoreNotForReplication;
+                deploy_options.DoNotAlterReplicatedObjects = DeployOptions.DoNotAlterReplicatedObjects;
+
                 deploy_options.DropIndexesNotInSource = DeployOptions.DropIndexesNotInSource;
+                deploy_options.IgnoreIndexOptions = DeployOptions.IgnoreIndexOptions;
+                deploy_options.IgnoreLockHintsOnIndexes = DeployOptions.IgnoreLockHintsOnIndexes;
+
                 deploy_options.IgnoreIdentitySeed = DeployOptions.IgnoreIdentitySeed;
                 deploy_options.IgnoreIncrement = DeployOptions.IgnoreIncrement;
                 deploy_options.CommandTimeout = DeployOptions.CommandTimeout;
-                deploy_options.DatabaseLockTimeout = DeployOptions.DatabaseLockTimeout;
-                deploy_options.IgnoreIndexOptions = DeployOptions.IgnoreIndexOptions;
+                deploy_options.DatabaseLockTimeout = DeployOptions.DatabaseLockTimeout;                
                 deploy_options.CommentOutSetVarDeclarations = DeployOptions.CommentOutSetVarDeclarations;
-                deploy_options.IgnoreLockHintsOnIndexes = DeployOptions.IgnoreLockHintsOnIndexes;
-                deploy_options.IgnoreTableOptions = DeployOptions.IgnoreTableOptions;
 
+                
+                deploy_options.BlockOnPossibleDataLoss = DeployOptions.BlockOnPossibleDataLoss;
+                deploy_options.IgnoreKeywordCasing = DeployOptions.IgnoreKeywordCasing;
+                deploy_options.IgnoreTableOptions = DeployOptions.IgnoreTableOptions;                
                 deploy_options.IgnoreWithNocheckOnCheckConstraints = DeployOptions.IgnoreWithNocheckOnCheckConstraints;
                 deploy_options.IgnoreWithNocheckOnForeignKeys = DeployOptions.IgnoreWithNocheckOnForeignKeys;
+
+                deploy_options.IgnoreUserSettingsObjects = DeployOptions.IgnoreUserSettingsObjects;
+
+                //deploy_options.ExcludeObjectTypes = new[] { ObjectType.ind };
+
 
                 /*
                  * https://learn.microsoft.com/en-us/dotnet/api/microsoft.sqlserver.dac.objecttype?view=sql-dacfx-162
