@@ -383,6 +383,32 @@ namespace SQLSchemaCompare
                     DeployOptions.IgnoreWithNocheckOnCheckConstraints = false;
                 }
 
+                if (child.SelectSingleNode("BlockOnPossibleDataLoss".Trim()) != null)
+                {
+                    DeployOptions.BlockOnPossibleDataLoss = Convert.ToBoolean(child.SelectSingleNode("BlockOnPossibleDataLoss".Trim()).Value);
+                }
+                else
+                {
+                    DeployOptions.BlockOnPossibleDataLoss = false;
+                }
+
+                if (child.SelectSingleNode("IgnoreUserSettingsObjects".Trim()) != null)
+                {
+                    DeployOptions.IgnoreUserSettingsObjects = Convert.ToBoolean(child.SelectSingleNode("IgnoreUserSettingsObjects".Trim()).Value);
+                }
+                else
+                {
+                    DeployOptions.IgnoreUserSettingsObjects = false;
+                }
+
+                if (child.SelectSingleNode("IgnoreWhitespace".Trim()) != null)
+                {
+                    DeployOptions.IgnoreWhitespace = Convert.ToBoolean(child.SelectSingleNode("IgnoreWhitespace".Trim()).Value);
+                }
+                else
+                {
+                    DeployOptions.IgnoreWhitespace = false;
+                }
 
 
 

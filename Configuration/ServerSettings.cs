@@ -77,12 +77,11 @@ namespace SQLSchemaCompare
         public static bool IgnoreTableOptions { get; set; }
         public static bool IgnoreWithNocheckOnForeignKeys { get; set; }
         public static bool IgnoreWithNocheckOnCheckConstraints { get; set; }
+        public static bool IgnoreUserSettingsObjects { get; set; }
+        public static bool IgnoreWhitespace { get; set; }
+
 
         public static ObjectType[] ExcludeObjectTypes { get; set; }
-
-
-
-
 
     }
 

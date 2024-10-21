@@ -331,7 +331,7 @@ namespace SQLSchemaCompare
             }
             catch (Exception e) { WriteToLog(target_server_padded, target_database, "Error", e); }
         }
-// aaa
+
         private static DacDeployOptions GetDeployOptions()
         {
             try
@@ -366,14 +366,15 @@ namespace SQLSchemaCompare
                 deploy_options.IgnoreWithNocheckOnForeignKeys = DeployOptions.IgnoreWithNocheckOnForeignKeys;
 
                 deploy_options.IgnoreUserSettingsObjects = DeployOptions.IgnoreUserSettingsObjects;
+                deploy_options.IgnoreWhitespace = DeployOptions.IgnoreWhitespace;
 
-                //deploy_options.ExcludeObjectTypes = new[] { ObjectType.ind };
 
 
                 /*
                  * https://learn.microsoft.com/en-us/dotnet/api/microsoft.sqlserver.dac.objecttype?view=sql-dacfx-162
                 */
 
+                //deploy_options.ExcludeObjectTypes = new[] { ObjectType.ind };
                 deploy_options.ExcludeObjectTypes = DeployOptions.ExcludeObjectTypes;                    
 
                 return deploy_options;
